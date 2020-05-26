@@ -6,12 +6,14 @@ function Navigation() {
   return (
     <>
       <Box height='2' />
-      <Button variant='link' as={RouterLink} to='/'>
-        Basic
-      </Button>
-      <Button variant='link' as={RouterLink} to='/nested'>
-        Nested
-      </Button>
+      <Box display='flex' justifyContent='space-around'>
+        <Button variant='link' as={RouterLink} to='/'>
+          Basic
+        </Button>
+        <Button variant='link' as={RouterLink} to='/nested'>
+          Nested
+        </Button>
+      </Box>
       <Box height='2' />
     </>
   )

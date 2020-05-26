@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import { Box } from '@chakra-ui/core'
 import Basic from './screens/Basic'
+import Nested from './screens/Nested'
 import Navigation from './components/Navigation'
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
           <Redirect from='/react-field-validation-form' to='/' />
           <Route exact path='/'>
             <Basic />
+          </Route>
+          <Route path='/nested'>
+            <Nested />
           </Route>
         </Switch>
       </Router>

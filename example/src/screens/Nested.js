@@ -12,15 +12,19 @@ function Nested() {
     handleValidateField,
   } = useFieldValidationForm({
     initialValues: {
-      email: '',
-      password: '',
+      user: {
+        name: '',
+        email: '',
+      },
     },
 
     validationSchema: {
-      email: string().email('Format invalid!').required('Field Required!'),
-      password: string()
-        .required('Field Required!')
-        .min(3, 'Minimum of 3 characters'),
+      user: {
+        name: string()
+          .required('Field Required!')
+          .min(3, 'Minimum of 3 characters'),
+        email: string().email('Format invalid!').required('Field Required!'),
+      },
     },
 
     callBack: (outputValues) => {
@@ -32,30 +36,32 @@ function Nested() {
     <Box>
       <Box height='8' />
       <form method='POST' onSubmit={handleSubmit}>
+        <Box height='8' />
+        <FormLabel htmlFor='name'>Name</FormLabel>
+        <Input
+          type='name'
+          name='user.name'
+          id='name'
+          value={formData.user.name}
+          onChange={handleChange}
+          onBlur={handleValidateField}
+        />
+
+        <div>{formErrors?.user?.name}</div>
+        <Box height='8' />
+
         <FormLabel htmlFor='email'>Email</FormLabel>
         <Input
           type='text'
-          name='email'
+          name='user.email'
           id='email'
-          value={formData.email}
+          value={formData.user.email}
           onChange={handleChange}
           onBlur={handleValidateField}
         />
-        {formErrors?.email && <div>{formErrors.email}</div>}
+        <div>{formErrors?.user?.email}</div>
 
         <Box height='8' />
-        <FormLabel htmlFor='password'>Password</FormLabel>
-        <Input
-          type='password'
-          name='password'
-          id='password'
-          value={formData.password}
-          onChange={handleChange}
-          onBlur={handleValidateField}
-        />
-        {formErrors?.password && <div>{formErrors.password}</div>}
-        <Box height='8' />
-
         <Button variant='solid' type='submit'>
           submit{' '}
         </Button>
