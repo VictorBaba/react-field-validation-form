@@ -82,9 +82,9 @@ function Basic() {
 export default Basic
 ```
 
-### Check examples folder for in depth usage.
+#### Check examples folder for in depth usage.
 
-### Or [See them in action](https://victorbaba.github.io/react-field-validation-form)
+#### Or [See them in action](https://victorbaba.github.io/react-field-validation-form)
 
 ## License
 

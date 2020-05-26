@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { string } from 'yup'
 import useFieldValidationForm from 'react-field-validation-form'
 import { Button, Box, FormLabel, Input } from '@chakra-ui/core'
 
 function Nested() {
+  const [values, setValues] = useState(null)
+
   const {
     formData,
     errors: formErrors,
@@ -28,7 +30,7 @@ function Nested() {
     },
 
     callBack: (outputValues) => {
-      console.log(outputValues)
+      setValues(outputValues)
     },
   })
 
@@ -65,6 +67,9 @@ function Nested() {
           submit{' '}
         </Button>
       </form>
+
+      <Box height='8' />
+      <Box>Output Values: {values && JSON.stringify(values, null, 2)}</Box>
     </Box>
   )
 }
