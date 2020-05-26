@@ -56,7 +56,7 @@ function Basic() {
           onChange={handleChange}
           onBlur={handleValidateField}
         />
-        {formErrors?.email && <div>{formErrors.email}</div>}
+        <div>{formErrors?.email}</div>
 
         <Box height='8' />
         <FormLabel htmlFor='password'>Password</FormLabel>
@@ -68,7 +68,7 @@ function Basic() {
           onChange={handleChange}
           onBlur={handleValidateField}
         />
-        {formErrors?.password && <div>{formErrors.password}</div>}
+        <div>{formErrors?.password}</div>
         <Box height='8' />
 
         <Button variant='solid' type='submit'>
