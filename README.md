@@ -1,6 +1,6 @@
 # react-field-validation-form
 
-> Custom React Hook to manage field validation
+> Custom React Hook to manage field and form level validation using Yup with support for nested data, arrays and async values.
 
 [![NPM](https://img.shields.io/npm/v/react-field-validation-form.svg)](https://www.npmjs.com/package/react-field-validation-form) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -82,7 +82,9 @@ function Basic() {
 export default Basic
 ```
 
-[Examples in action](https://victorbaba.github.io/react-field-validation-form)
+##### Check examples folder for in depth usage.
+
+##### Or [See them in action](https://victorbaba.github.io/react-field-validation-form)
 
 ## License
 
