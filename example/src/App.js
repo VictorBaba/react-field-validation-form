@@ -1,14 +1,9 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
 import { Box } from '@chakra-ui/core'
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Navigation from './components/Navigation'
 import Basic from './screens/Basic'
 import Nested from './screens/Nested'
-import Navigation from './components/Navigation'
 
 function App() {
   return (
@@ -16,11 +11,10 @@ function App() {
       <Router>
         <Navigation />
         <Switch>
-          <Redirect from='/react-field-validation-form' to='/' />
-          <Route exact path='/'>
+          <Route exact path='/react-field-validation-form'>
             <Basic />
           </Route>
-          <Route path='/nested'>
+          <Route path='/react-field-validation-form/nested'>
             <Nested />
           </Route>
         </Switch>

@@ -36,7 +36,6 @@ function Nested() {
     <Box>
       <Box height='8' />
       <form method='POST' onSubmit={handleSubmit}>
-        <Box height='8' />
         <FormLabel htmlFor='name'>Name</FormLabel>
         <Input
           type='name'
