@@ -21,6 +21,13 @@ function Navigation() {
         >
           Nested
         </Button>
+        <Button
+          variant='link'
+          as={RouterLink}
+          to='/react-field-validation-form/array'
+        >
+          Array
+        </Button>
       </Box>
       <Box height='2' />
     </>

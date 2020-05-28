@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Basic from './screens/Basic'
 import Nested from './screens/Nested'
+import WithArray from './screens/WithArray'
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route path='/react-field-validation-form/nested'>
             <Nested />
+          </Route>
+          <Route path='/react-field-validation-form/array'>
+            <WithArray />
           </Route>
         </Switch>
       </Router>

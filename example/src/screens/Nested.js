@@ -25,7 +25,7 @@ function Nested() {
         name: string()
           .required('Field Required!')
           .min(3, 'Minimum of 3 characters'),
-        email: string().email('Format invalid!').required('Field Required!'),
+        email: string().required('Field Required!').email('Format invalid!'),
       },
     },
 

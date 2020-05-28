@@ -13,6 +13,7 @@
     "react-field-validation-form": "file:..",
     "react-router-dom": "^5.2.0",
     "react-scripts": "file:../node_modules/react-scripts",
+    "shortid": "^2.2.15",
     "yup": "^0.29.0"
   },
   "scripts": {

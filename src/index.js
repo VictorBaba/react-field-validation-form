@@ -31,8 +31,13 @@ export default function useFieldValidationForm({
       .filter((error) => error !== null)
 
     const hasErrors = errorState.length > 0 || Object.keys(errors).length === 0
-    const areFieldsValidated = Object.keys(validationSchema).every((v) =>
-      Object.keys(errors).includes(v)
+
+    const formDataKeys = reduceObjectToArray(formData)
+
+    const errorsKeys = reduceObjectToArray(errors)
+
+    const areFieldsValidated = formDataKeys.every(
+      (v) => errorsKeys.indexOf(v) !== -1
     )
 
     if (hasErrors) {
@@ -42,9 +47,9 @@ export default function useFieldValidationForm({
     if (isOnSubmitCalled && isTouched && !hasErrors && areFieldsValidated) {
       callBack(formData)
       setFormData(initialValues)
-      setErrors({})
       setTouched(false)
       setOnSubmitCalled(false)
+      setErrors({})
     }
   }, [
     callBack,
@@ -55,6 +60,25 @@ export default function useFieldValidationForm({
     isOnSubmitCalled,
     validationSchema
   ])
+
+  function reduceObjectToArray(obj) {
+    return Object.entries(obj)
+      .map(([key, value]) => {
+        const isObject = typeof value === 'object' && !Array.isArray(value)
+        const isArray = Array.isArray(value)
+
+        if (value && isObject) {
+          console.log({ este: value })
+
+          return Object.keys(value)
+        }
+        if (isArray) {
+          return value.map((nestedKey) => nestedKey.id)
+        }
+        return key
+      })
+      .flat()
+  }
 
   function getValueByType(type, value) {
     if (type === 'number') {
@@ -91,7 +115,6 @@ export default function useFieldValidationForm({
 
   async function handleValidateField(e) {
     const { value, name } = e.target
-
     const isObject = name.includes('.')
     if (isObject) {
       const [objectKey, objectValue] = name.split('.')
@@ -134,6 +157,7 @@ export default function useFieldValidationForm({
 
   function handleChange(e) {
     const { name, value, type } = e.target
+
     const isObject = name.includes('.')
     if (isObject) {
       const [objectKey, objectValue] = name.split('.')
@@ -187,7 +211,6 @@ export default function useFieldValidationForm({
 
   async function handleValidateArrayField({ e, id }) {
     const { name, value } = e.target
-
     const fieldSchema = object().shape(validationSchemaObject[name])
     try {
       await fieldSchema.validate({ [name]: value })
@@ -227,33 +250,39 @@ export default function useFieldValidationForm({
   }
 
   function handleValidateSchema(schema) {
+    const errorsKeys = reduceObjectToArray(errors)
+
     Object.entries(schema).forEach(([key, value]) => {
       const isObject =
         typeof formData[key] === 'object' && !Array.isArray(formData[key])
       const isArray = Array.isArray(formData[key])
       if (isArray) {
         if (formData[key].length) {
-          formData[key].map(({ id, name }) =>
-            handleValidateArrayField({
-              e: { target: { name: key, value: name } },
-              id
-            })
-          )
+          formData[key].map(({ id, name }) => {
+            if (!errorsKeys.includes(id)) {
+              handleValidateArrayField({
+                e: { target: { name: key, value: name } },
+                id
+              })
+            }
+          })
         }
       }
 
       if (isObject) {
         Object.keys(value).forEach((nestedKey) => {
-          handleValidateField({
-            target: {
-              name: `${key}.${nestedKey}`,
-              value: formData[key][nestedKey]
-            }
-          })
+          if (!errorsKeys.includes(nestedKey)) {
+            handleValidateField({
+              target: {
+                name: `${key}.${nestedKey}`,
+                value: formData[key][nestedKey]
+              }
+            })
+          }
         })
       }
 
-      if (!isArray && !isObject) {
+      if (!isArray && !isObject && !errorsKeys.includes(key)) {
         handleValidateField({ target: { name: key, value: formData[key] } })
       }
     })
