@@ -68,8 +68,6 @@ export default function useFieldValidationForm({
         const isArray = Array.isArray(value)
 
         if (value && isObject) {
-          console.log({ este: value })
-
           return Object.keys(value)
         }
         if (isArray) {
