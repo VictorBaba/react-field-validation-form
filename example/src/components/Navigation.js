@@ -28,6 +28,13 @@ function Navigation() {
         >
           Array
         </Button>
+        <Button
+          variant='link'
+          as={RouterLink}
+          to='/react-field-validation-form/async'
+        >
+          Async
+        </Button>
       </Box>
       <Box height='2' />
     </>

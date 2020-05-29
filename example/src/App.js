@@ -5,6 +5,7 @@ import Navigation from './components/Navigation'
 import Basic from './screens/Basic'
 import Nested from './screens/Nested'
 import WithArray from './screens/WithArray'
+import Async from './screens/Async'
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path='/react-field-validation-form/array'>
             <WithArray />
+          </Route>
+          <Route path='/react-field-validation-form/async'>
+            <Async />
           </Route>
         </Switch>
       </Router>
