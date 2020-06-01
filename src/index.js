@@ -1,16 +1,49 @@
 import compare from 'just-compare'
 import { useEffect, useState } from 'react'
 import { object } from 'yup'
+import PropTypes from 'prop-types/prop-types'
+
+const validationPropTypes = {
+  initialValues: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.objectOf(PropTypes.string),
+      PropTypes.arrayOf(
+        PropTypes.exact({
+          id: PropTypes.string,
+          name: PropTypes.string
+        })
+      )
+    ])
+  ),
+  validationSchema: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.objectOf(PropTypes.object)
+    ])
+  ),
+  callBack: PropTypes.func.isRequired
+}
 
 export default function useFieldValidationForm({
   initialValues,
-  callBack,
-  validationSchema
+  validationSchema,
+  callBack
 }) {
   const [formData, setFormData] = useState(initialValues)
   const [errors, setErrors] = useState({})
   const [isTouched, setTouched] = useState(false)
   const [isOnSubmitCalled, setOnSubmitCalled] = useState(false)
+
+  useEffect(() => {
+    PropTypes.checkPropTypes(
+      validationPropTypes,
+      { callBack, initialValues, validationSchema },
+      'useFieldValidationForm',
+      useFieldValidationForm
+    )
+  }, [initialValues, callBack, validationSchema])
 
   useEffect(() => {
     const areInitialValuesEqual = compare(formData, initialValues)
