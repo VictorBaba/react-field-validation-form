@@ -73,7 +73,7 @@ export default function useFieldValidationForm({
       (v) => errorsKeys.indexOf(v) !== -1
     )
 
-    if (hasErrors) {
+    if (hasErrors && areFieldsValidated) {
       setOnSubmitCalled(false)
     }
 
@@ -150,7 +150,6 @@ export default function useFieldValidationForm({
     if (isObject) {
       const [objectKey, objectValue] = name.split('.')
       setTouched(true)
-      setOnSubmitCalled(false)
 
       const fieldSchema = object().shape(validationSchemaObject[objectValue])
 
@@ -174,7 +173,6 @@ export default function useFieldValidationForm({
       }
     } else {
       setTouched(true)
-      setOnSubmitCalled(false)
 
       const fieldSchema = object().shape(validationSchemaObject[name])
       try {
@@ -201,14 +199,12 @@ export default function useFieldValidationForm({
         }
       }))
       setTouched(true)
-      setOnSubmitCalled(false)
     } else {
       setFormData((prevState) => ({
         ...prevState,
         [name]: getValueByType(type, value)
       }))
       setTouched(true)
-      setOnSubmitCalled(false)
     }
   }
 
@@ -221,7 +217,6 @@ export default function useFieldValidationForm({
 
     setFormData((prevState) => ({ ...prevState, [name]: newArray }))
     setTouched(true)
-    setOnSubmitCalled(false)
   }
 
   function handleArrayPushField({ key, data }) {
@@ -230,14 +225,18 @@ export default function useFieldValidationForm({
       [key]: [...formData[key], data]
     }))
     setTouched(true)
-    setOnSubmitCalled(false)
   }
 
   function handleArrayRemoveField({ key, id }) {
-    const newArray = formData[key].filter((field) => field.id !== id)
-    setFormData((prevState) => ({ ...prevState, [key]: newArray }))
+    setFormData((prevState) => ({
+      ...prevState,
+      [key]: prevState[key].filter((field) => field.id !== id)
+    }))
+    setErrors((prevErrors) => {
+      if (prevErrors?.[key]?.[id]) delete prevErrors[key][id]
+      return prevErrors
+    })
     setTouched(true)
-    setOnSubmitCalled(false)
   }
 
   async function handleValidateArrayField({ e, id }) {
