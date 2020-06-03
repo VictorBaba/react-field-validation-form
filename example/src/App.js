@@ -10,19 +10,19 @@ import Async from './screens/Async'
 function App() {
   return (
     <Box maxWidth='xl' margin='auto'>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Navigation />
         <Switch>
-          <Route exact path='/react-field-validation-form'>
+          <Route exact path='/'>
             <Basic />
           </Route>
-          <Route path='/react-field-validation-form/nested'>
+          <Route path='/nested'>
             <Nested />
           </Route>
-          <Route path='/react-field-validation-form/array'>
+          <Route path='/array'>
             <WithArray />
           </Route>
-          <Route path='/react-field-validation-form/async'>
+          <Route path='/async'>
             <Async />
           </Route>
         </Switch>

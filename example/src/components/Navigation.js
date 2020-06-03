@@ -7,32 +7,16 @@ function Navigation() {
     <>
       <Box height='2' />
       <Box display='flex' justifyContent='space-around'>
-        <Button
-          variant='link'
-          as={RouterLink}
-          to='/react-field-validation-form'
-        >
+        <Button variant='link' as={RouterLink} to='/'>
           Basic
         </Button>
-        <Button
-          variant='link'
-          as={RouterLink}
-          to='/react-field-validation-form/nested'
-        >
+        <Button variant='link' as={RouterLink} to='/nested'>
           Nested
         </Button>
-        <Button
-          variant='link'
-          as={RouterLink}
-          to='/react-field-validation-form/array'
-        >
+        <Button variant='link' as={RouterLink} to='/array'>
           Array
         </Button>
-        <Button
-          variant='link'
-          as={RouterLink}
-          to='/react-field-validation-form/async'
-        >
+        <Button variant='link' as={RouterLink} to='/async'>
           Async
         </Button>
       </Box>
