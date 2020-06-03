@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-field-validation-form/precache-manifest.8b4ffc170f61b7cdffe797e2bf2fb16c.js"
+  "/react-field-validation-form/precache-manifest.20c7d3b7dd411963b09c565117416091.js"
 );
 
 self.addEventListener('message', (event) => {
