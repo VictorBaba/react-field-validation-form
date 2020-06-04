@@ -58,7 +58,7 @@ function Basic() {
           id='email'
           value={formData.email}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
         <div>{formErrors?.email}</div>
 
@@ -70,7 +70,7 @@ function Basic() {
           id='password'
           value={formData.password}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
         <div>{formErrors?.password}</div>
         <Box height='8' />
@@ -139,7 +139,7 @@ function Nested() {
           id='name'
           value={formData.user.name}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
 
         <div>{formErrors?.user?.name}</div>
@@ -152,7 +152,7 @@ function Nested() {
           id='email'
           value={formData.user.email}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
         <div>{formErrors?.user?.email}</div>
 
@@ -236,7 +236,7 @@ function WithArray() {
           id='name'
           value={formData.name}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
 
         <div>{formErrors?.name}</div>
@@ -257,7 +257,7 @@ function WithArray() {
                   onChange={(e) =>
                     handleArrayOnChange({ e, id: foodType.id, index })
                   }
-                  onBlur={(e) =>
+                  onInput={(e) =>
                     handleValidateArrayField({ e, id: foodType.id })
                   }
                 />
@@ -398,7 +398,7 @@ function Async() {
               id='name'
               value={formData.name}
               onChange={handleChange}
-              onBlur={handleValidateField}
+              onInput={handleValidateField}
             />
 
             <div>{formErrors?.name}</div>
@@ -419,7 +419,7 @@ function Async() {
                       onChange={(e) =>
                         handleArrayOnChange({ e, id: foodType.id, index })
                       }
-                      onBlur={(e) =>
+                      onInput={(e) =>
                         handleValidateArrayField({ e, id: foodType.id })
                       }
                     />
