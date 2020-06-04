@@ -202,6 +202,7 @@ export default function useFieldValidationForm({
       }))
     }
     setTouched(true)
+    setOnSubmitCalled(false)
   }
 
   function handleArrayOnChange({ e, id }) {
@@ -213,6 +214,7 @@ export default function useFieldValidationForm({
 
     setFormData((prevState) => ({ ...prevState, [name]: newArray }))
     setTouched(true)
+    setOnSubmitCalled(false)
   }
 
   function handleArrayPushField({ key, data }) {
@@ -221,6 +223,7 @@ export default function useFieldValidationForm({
       [key]: [...formData[key], data]
     }))
     setTouched(true)
+    setOnSubmitCalled(false)
   }
 
   function handleArrayRemoveField({ key, id }) {
@@ -233,6 +236,7 @@ export default function useFieldValidationForm({
       return prevErrors
     })
     setTouched(true)
+    setOnSubmitCalled(false)
   }
 
   async function handleValidateArrayField({ e, id }) {
