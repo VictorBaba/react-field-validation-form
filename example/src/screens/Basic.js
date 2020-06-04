@@ -41,7 +41,7 @@ function Basic() {
           id='email'
           value={formData.email}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
         <div>{formErrors?.email}</div>
 
@@ -53,7 +53,7 @@ function Basic() {
           id='password'
           value={formData.password}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
         <div>{formErrors?.password}</div>
         <Box height='8' />

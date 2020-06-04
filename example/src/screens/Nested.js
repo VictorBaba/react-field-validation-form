@@ -45,7 +45,7 @@ function Nested() {
           id='name'
           value={formData.user.name}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
 
         <div>{formErrors?.user?.name}</div>
@@ -58,7 +58,7 @@ function Nested() {
           id='email'
           value={formData.user.email}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
         <div>{formErrors?.user?.email}</div>
 

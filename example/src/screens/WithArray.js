@@ -60,7 +60,7 @@ function WithArray() {
           id='name'
           value={formData.name}
           onChange={handleChange}
-          onBlur={handleValidateField}
+          onInput={handleValidateField}
         />
 
         <div>{formErrors?.name}</div>
@@ -81,7 +81,7 @@ function WithArray() {
                   onChange={(e) =>
                     handleArrayOnChange({ e, id: foodType.id, index })
                   }
-                  onBlur={(e) =>
+                  onInput={(e) =>
                     handleValidateArrayField({ e, id: foodType.id })
                   }
                 />

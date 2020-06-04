@@ -149,7 +149,6 @@ export default function useFieldValidationForm({
     const isObject = name.includes('.')
     if (isObject) {
       const [objectKey, objectValue] = name.split('.')
-      setTouched(true)
 
       const fieldSchema = object().shape(validationSchemaObject[objectValue])
 
@@ -172,8 +171,6 @@ export default function useFieldValidationForm({
         }))
       }
     } else {
-      setTouched(true)
-
       const fieldSchema = object().shape(validationSchemaObject[name])
       try {
         await fieldSchema.validate({ [name]: value })
@@ -198,14 +195,13 @@ export default function useFieldValidationForm({
           [objectValue]: getValueByType(type, value)
         }
       }))
-      setTouched(true)
     } else {
       setFormData((prevState) => ({
         ...prevState,
         [name]: getValueByType(type, value)
       }))
-      setTouched(true)
     }
+    setTouched(true)
   }
 
   function handleArrayOnChange({ e, id }) {
@@ -276,7 +272,6 @@ export default function useFieldValidationForm({
             })
       }))
     }
-    setTouched(true)
   }
 
   function handleValidateSchema(schema) {
